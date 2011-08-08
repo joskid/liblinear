@@ -133,7 +133,7 @@ def train(arg1, arg2=None, arg3=None):
 		m.x_space = prob.x_space
 		return m
 
-def predict(y, x, m, options=""):
+def predict(y, x, m, options="", verbose=True):
 	"""
 	predict(y, x, m [, "options"]) -> (p_labels, p_acc, p_vals)
 
@@ -204,7 +204,8 @@ def predict(y, x, m, options=""):
 		y = [0] * len(x)
 	ACC = evaluations(y, pred_labels)
 	l = len(y)
-	print("Accuracy = %g%% (%d/%d)" % (ACC, int(l*ACC//100), l))
+    if verbose:
+    	print("Accuracy = %g%% (%d/%d)" % (ACC, int(l*ACC//100), l))
 
 	return pred_labels, ACC, pred_values
 	
