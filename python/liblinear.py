@@ -2,8 +2,9 @@
 
 from ctypes import *
 from ctypes.util import find_library
-import sys
+
 import os
+import sys
 
 # For unix the prefix 'lib' is not considered.
 if find_library('linear'):
@@ -178,7 +179,7 @@ class parameter(Structure):
 		liblinear.set_print_string_function(self.print_func)
 		self.weight_label = (c_int*self.nr_weight)()
 		self.weight = (c_double*self.nr_weight)()
-		for i in range(self.nr_weight): 
+		for i in xrange(self.nr_weight):
 			self.weight[i] = weight[i]
 			self.weight_label[i] = weight_label[i]
 

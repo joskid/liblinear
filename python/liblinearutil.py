@@ -1,5 +1,7 @@
 #!/usr/bin/env python
 
+import itertools
+
 from liblinear import *
 
 def svm_read_problem(data_file_name):
@@ -54,7 +56,7 @@ def evaluations(ty, pv):
 	if len(ty) != len(pv):
 		raise ValueError("len(ty) must equal to len(pv)")
 	total_correct = total_error = 0
-	for v, y in zip(pv, ty):
+	for v, y in itertools.izip(pv, ty):
 		if y == v: 
 			total_correct += 1
 	l = len(ty)
@@ -204,8 +206,8 @@ def predict(y, x, m, options="", verbose=True):
 		y = [0] * len(x)
 	ACC = evaluations(y, pred_labels)
 	l = len(y)
-    if verbose:
-    	print("Accuracy = %g%% (%d/%d)" % (ACC, int(l*ACC//100), l))
+	if verbose:
+		print("Accuracy = %g%% (%d/%d)" % (ACC, int(l*ACC//100), l))
 
 	return pred_labels, ACC, pred_values
 	
